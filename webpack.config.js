@@ -21,6 +21,18 @@ module.exports = {
             loader: "css-loader", // loaderは下から上に順に適用される
           }
         ]
+      },
+      {
+        test: /\.(png|jpg)/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              esModule: false,
+              name: "img/[name].[ext]",
+            }
+          },
+        ]
       }
     ]
   },
