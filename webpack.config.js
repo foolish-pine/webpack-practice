@@ -27,13 +27,16 @@ module.exports = {
         ],
       },
       {
-        test: /\.css/, // ファイル名の検知
+        test: /\.scss/, // ファイル名の検知
         use: [
           {
             loader: miniCssExtractPlugin.loader, // loaderを変更する
           },
           {
-            loader: "css-loader", // loaderは下から上に順に適用される
+            loader: "css-loader",
+          },
+          {
+            loader: "sass-loader", // loaderは下から上に順に適用される
           }
         ]
       },
