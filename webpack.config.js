@@ -1,19 +1,30 @@
 const path = require("path")
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
 const htmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin  } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/js/main.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "./js/main.js",
+    clean: true,
+  },
+  devServer: {
+    open: true,
+    watchFiles: ["src/**/*.ejs"],
   },
   module: {
     rules: [
       {
-        test: /\.html/,
-        loader: "html-loader",
+        test: /\.ejs/,
+        use: [
+          {
+            loader: "html-loader",
+          },
+          {
+            loader: "ejs-plain-loader",
+          }
+        ],
       },
       {
         test: /\.css/, // ファイル名の検知
@@ -49,8 +60,16 @@ module.exports = {
       filename: "./css/main.css" // 出力ファイルのファイル名を指定する
     }),
     new htmlWebpackPlugin({
-      template: "./src/templates/index.html", // index.htmlをテンプレートファイルに指定する
+      template: "./src/templates/index.ejs", // index.htmlをテンプレートファイルに指定する
+      filename: "index.html"
     }),
-    new CleanWebpackPlugin (), // build前にdistのファイルをすべて削除する
+    new htmlWebpackPlugin({
+      template: "./src/templates/access.ejs",
+      filename: "access.html"
+    }),
+    new htmlWebpackPlugin({
+      template: "./src/templates/members/taro.ejs",
+      filename: "members/taro.html"
+    }),
   ]
 }
