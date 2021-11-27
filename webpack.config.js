@@ -12,6 +12,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html/,
+        loader: "html-loader",
+      },
+      {
         test: /\.css/, // ファイル名の検知
         use: [
           {
@@ -24,14 +28,18 @@ module.exports = {
       },
       {
         test: /\.(png|jpg)/,
+        type: "asset/resource",
+        generator: {
+          filename: "img/[name][ext]", // nameとextの間にドットは必要ない
+        },
         use: [
-          {
-            loader: "file-loader",
-            options: {
-              esModule: false,
-              name: "img/[name].[ext]",
-            }
-          },
+          // {
+          //   loader: "file-loader",
+          //   options: {
+          //     esModule: false,
+          //     name: "img/[name].[ext]",
+          //   }
+          // },
         ]
       }
     ]
