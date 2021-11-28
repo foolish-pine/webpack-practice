@@ -3,6 +3,7 @@ const miniCssExtractPlugin = require("mini-css-extract-plugin");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  devtool: "source-map",
   entry: "./src/js/main.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
