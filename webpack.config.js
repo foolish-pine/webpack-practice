@@ -62,7 +62,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg)/,
+        test: /\.(png|jpg|jpeg)/,
         type: "asset/resource",
         generator: {
           filename: "img/[name][ext]", // nameとextの間にドットは必要ない
@@ -75,6 +75,9 @@ module.exports = {
           //     name: "img/[name].[ext]",
           //   }
           // },
+          {
+            loader: "image-webpack-loader",
+          }
         ]
       }
     ]

@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack serve",
+    "build": "webpack --mode production",
+    "build:dev": "webpack"
   },
   "author": "",
   "license": "UNLICENSED",
@@ -17,6 +19,7 @@
     "ejs-plain-loader": "^1.4.1",
     "html-loader": "^3.0.1",
     "html-webpack-plugin": "^5.5.0",
+    "image-webpack-loader": "^8.0.1",
     "mini-css-extract-plugin": "^2.4.5",
     "node-sass": "^6.0.1",
     "sass-loader": "^12.3.0",
