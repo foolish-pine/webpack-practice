@@ -1,6 +1,7 @@
 const path = require("path")
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
 const htmlWebpackPlugin = require("html-webpack-plugin");
+const vueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
   mode: "development",
@@ -17,6 +18,24 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(ts|tsx)/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "ts-loader",
+          },
+        ]
+      },
+      {
+        test: /\.vue/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "vue-loader",
+          },
+        ]
+      },
       {
         test: /\.js/,
         exclude: /node_modules/,
@@ -84,6 +103,7 @@ module.exports = {
     ]
   },
   plugins: [ // pluginsを記述する階層に注意する
+    new vueLoaderPlugin(),
     new miniCssExtractPlugin({
       filename: "./css/[name]-[contenthash].css" // 出力ファイルのファイル名を指定する
     }),
