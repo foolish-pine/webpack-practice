@@ -8,7 +8,7 @@ module.exports = {
   entry: "./src/js/main.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "./js/main.js",
+    filename: "./js/[name]-[contenthash].js",
     clean: true,
   },
   devServer: {
@@ -30,7 +30,8 @@ module.exports = {
                   {
                     "targets": "> 0.25%, not dead"
                   },
-                ]
+                ],
+                "@babel/preset-react"
               ],
             },
           },
@@ -65,7 +66,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg)/,
         type: "asset/resource",
         generator: {
-          filename: "img/[name][ext]", // nameとextの間にドットは必要ない
+          filename: "img/[name]-[contenthash][ext]", // nameとextの間にドットは必要ない
         },
         use: [
           // {
@@ -84,7 +85,7 @@ module.exports = {
   },
   plugins: [ // pluginsを記述する階層に注意する
     new miniCssExtractPlugin({
-      filename: "./css/main.css" // 出力ファイルのファイル名を指定する
+      filename: "./css/[name]-[contenthash].css" // 出力ファイルのファイル名を指定する
     }),
     new htmlWebpackPlugin({
       template: "./src/templates/index.ejs", // index.htmlをテンプレートファイルに指定する
